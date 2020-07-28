@@ -3,7 +3,7 @@ project(xtion2_ros)
 
 set(CMAKE_BUILD_TYPE Debug)
 
-add_compile_options(-std=c++14)
+add_compile_options(-std=c++11)
 
 find_package(catkin REQUIRED
   COMPONENTS
@@ -33,10 +33,15 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
-  ${OPENNI2_INCLUDE_DIR}
+  ${PC_OPENNI2_INCLUDE_DIRS}
 )
 
-set(LINK_LIBS  ${OPENNI2_LIBRARY} ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
+set(LINK_LIBS
+  /usr/lib/OpenNI2/Drivers
+  ${PC_OPENNI2_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+  ${catkin_LIBRARIES}
+)
 set(NODE ${PROJECT_NAME}_node)
 
 add_library(${PROJECT_NAME}
